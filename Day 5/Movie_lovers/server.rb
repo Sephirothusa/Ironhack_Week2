@@ -40,8 +40,14 @@ get "/result/?:answer/?" do
 	@answer = params[:answer]
 	
 	if quiz.answer_correct?($current_movies, @answer)
+		@message = '<h1>You are absolutely correct</h1>'
+
+	else 
+
+		@message = '<h1>You are absolutely wrong</h1>'
 		
+		end
+
 		erb :result
-	end
 end
 
