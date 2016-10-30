@@ -1,0 +1,130 @@
+
+<style type="text/css">
+
+.movies{
+	padding:0 0 0 40px;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+    -webkit-animation: fadeinout 4s linear forwards;
+    animation: fadeinout 4s linear forwards;
+    opacity: 0;
+}
+
+@-webkit-keyframes fadeinout {
+  100% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+ 100% { opacity: 1; }
+}
+
+
+.movie {
+  width: 300px;
+  display: inline-block;
+  margin: 10px 15px;
+
+
+}
+
+.movie img{
+    width: 100%;
+    height: 400px;
+    margin: auto;
+}
+
+  .movie h2 {
+    text-align: center;
+}
+
+.quiz-form{
+  display: block;
+  width: 75%;
+  margin: 10px auto;
+}
+.quiz-input {
+    border-width:2px; 
+ 	padding:6px; 
+ 	font-size:22px; 
+ 	background-color:#19194F; 
+ 	border-color:#617aba; 
+ 	font-weight:bold; 
+ 	font-style:italic; 
+ 	font-family:monospace; 
+ 	box-shadow:inset 0px 0px 5px 0px rgba(42,42,42,.75); 
+ 	text-shadow:0px 0px 0px rgba(42,42,42,.69); 
+ 	border-radius:50px; 
+ 	border-style:hidden;
+ 	color:red;  
+ 	width:550px;
+  }
+
+ .quiz_input:focus { outline:none; } 
+
+
+.button {
+	position:relative;
+	left:10px;
+	-moz-box-shadow: 3px 4px 0px 0px #34b1db;
+	-webkit-box-shadow: 3px 4px 0px 0px #34b1db;
+	box-shadow: 3px 4px 0px 0px #34b1db;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dbdbdb), color-stop(1, #bab1ba));
+	background:-moz-linear-gradient(top, #dbdbdb 5%, #bab1ba 100%);
+	background:-webkit-linear-gradient(top, #dbdbdb 5%, #bab1ba 100%);
+	background:-o-linear-gradient(top, #dbdbdb 5%, #bab1ba 100%);
+	background:-ms-linear-gradient(top, #dbdbdb 5%, #bab1ba 100%);
+	background:linear-gradient(to bottom, #dbdbdb 5%, #bab1ba 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dbdbdb', endColorstr='#bab1ba',GradientType=0);
+	background-color:#dbdbdb;
+	-moz-border-radius:38px;
+	-webkit-border-radius:38px;
+	border-radius:38px;
+	border:3px solid #0050c7;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:17px;
+	padding:10px 68px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.button:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bab1ba), color-stop(1, #dbdbdb));
+	background:-moz-linear-gradient(top, #bab1ba 5%, #dbdbdb 100%);
+	background:-webkit-linear-gradient(top, #bab1ba 5%, #dbdbdb 100%);
+	background:-o-linear-gradient(top, #bab1ba 5%, #dbdbdb 100%);
+	background:-ms-linear-gradient(top, #bab1ba 5%, #dbdbdb 100%);
+	background:linear-gradient(to bottom, #bab1ba 5%, #dbdbdb 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#dbdbdb',GradientType=0);
+	background-color:#bab1ba;
+}
+
+.button:active {
+position:relative;
+	top:1px;
+}
+
+</style>
+
+
+<!-- <form class="quiz-form" method="POST" action="/result">
+	<input class="quiz-input"type="text" name="quiz_answer" placeholder="Type the title of the latest movie here!">
+	<button type="submit" class="button"> Submit Answer</button>
+</form> -->
+
+<div class="movies">
+	
+		<% @movies.each do |movie| %>
+		<div class="movie">
+			<h2><%= movie.title %></h2>
+			<img class="img-poster" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" />
+			<form method="POST" action="/result">
+			<button type="submit" class="button" name="quiz_answer" value="<%= movie.title %>"><%= movie.title %></button>
+			</form>
+		</div>
+		<% end %>
+	
+</div>
+
